@@ -31,9 +31,9 @@ jobs:
 
       - name: Build & restart container on EC2
         run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << EOF
           set -e
-          cd "${APP_DIR}/app"
+          cd "${{ secrets.APP_DIR }}/app"
 
           echo "🔨 Building Docker image..."
           docker build -t python-example:latest .
