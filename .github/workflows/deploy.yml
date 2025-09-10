@@ -38,10 +38,8 @@ jobs:
           echo "🔨 Building Docker image..."
           docker build -t python-example:latest .
 
-          echo "🛑 Stopping old container (if any)..."
-          if [ "$(docker ps -aq -f name=python-example)" ]; then
-            docker rm -f python-example || true
-          fi
+          echo "🛑 Stopping and removing old container (if any)..."
+          docker ps -a --filter "name=python-example" --format "{{.ID}}" | xargs -r docker rm -f
 
           echo "🚀 Starting new container..."
           docker run -d --name python-example \
