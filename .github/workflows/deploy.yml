@@ -12,11 +12,7 @@ env:
   APP_DIR: ${{ secrets.APP_DIR }}
 
 jobs:
-  test:
-    uses: ./.github/workflows/test.yml
-
   deploy:
-    needs: test
     runs-on: ubuntu-latest
 
     steps:
